@@ -1,4 +1,4 @@
-package vehicles;
+package homework_22_12_2018.vehicles;
 
 public enum Tire {
 R10(1),

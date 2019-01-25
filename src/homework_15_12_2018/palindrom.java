@@ -1,4 +1,4 @@
-package tema1;
+package homework_15_12_2018;
 
 import java.util.Scanner;
 

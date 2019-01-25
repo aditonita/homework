@@ -1,4 +1,4 @@
-package tema1;
+package homework_15_12_2018;
 
 public class SumOfPrimeNumbers {
 	static final int NUMAR_MAX = 100;

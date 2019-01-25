@@ -1,4 +1,4 @@
-package phones;
+package homework_22_12_2018.phones;
 
 public class HuaweiMateSE extends Huawei {
 	
