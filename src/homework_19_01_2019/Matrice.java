@@ -67,4 +67,8 @@ public class Matrice {
 		}
 		return max;
 	}
+	
+	public void MockMatrice(int[][] matriceMock) {
+		matrice = matriceMock;
+	}
 }
