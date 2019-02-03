@@ -15,10 +15,10 @@ public class MatriceTest extends TestCase {
 //	}
 
 	public void testSumDiagPrincipala() {
-		matriceTst.addValueMatrice();
-		matriceTst.showMatrice();
-		int result = matriceTst.sumDiagPrincipala();
-		System.out.println(result);
+//		matriceTst.addValueMatrice();
+//		matriceTst.ShowMatrice();
+//		int result = matriceTst.sumDiagPrincipala();
+//		System.out.println(result);
 	}
 
 //	public void testSumDiagSecundara() {
@@ -26,4 +26,12 @@ public class MatriceTest extends TestCase {
 //		int result = matriceTst.sumDiagSecundara();
 //		System.out.println(result);
 //	}
+	
+	public void testMaxDiagPricipala() {
+		int[][] matrice = {{0,1,2,3,4},{0,1,2,3,4},{0,1,2,3,4},{0,1,2,3,4},{0,1,2,3,4}};
+		Matrice m = new Matrice();
+		m.MockMatrice(matrice);
+		System.out.println(m.maxDiagPrincipala());
+		System.out.println(m.sumDiagSecundara());
+	}
 }
