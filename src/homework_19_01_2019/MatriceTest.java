@@ -16,7 +16,7 @@ public class MatriceTest extends TestCase {
 
 	public void testSumDiagPrincipala() {
 		matriceTst.addValueMatrice();
-		matriceTst.ShowMatrice();
+		matriceTst.showMatrice();
 		int result = matriceTst.sumDiagPrincipala();
 		System.out.println(result);
 	}
