@@ -14,6 +14,7 @@ public class VideoStore {
 	public void checkOut(String videoTitle) {
 
 		for (Video video : this.videoList) {
+			//nu comparam stringurile cu ==, cu equals intotdeauna
 			if (video.getTitle() == videoTitle) {
 				if (!(video.isChecked())) {
 					video.videoRented();
@@ -24,7 +25,7 @@ public class VideoStore {
 
 	public void returnVideo(String videoTitle, String clientName, int rate) {
 		for (Video video : this.videoList) {
-			if (video.getTitle() == videoTitle) {
+			if (video.getTitle() == videoTitle) { 
 				video.videoReturned();
 				videoRating(video, clientName, rate);
 			}

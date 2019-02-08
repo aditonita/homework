@@ -21,11 +21,11 @@ public class VideoStoreLauncher {
 		myVideoStore.checkOut("The Matrix");
 		myVideoStore.returnVideo("Star Wars Episode IV: A New Hope", "Popescu", 7);
 		myVideoStore.returnVideo("The Matrix", "Vasilescu", 6);
-		//myVideoStore.listInventory();
+		myVideoStore.listInventory();
 
 		myVideoStore.checkOut("The Matrix");
 		myVideoStore.returnVideo("The Matrix", "Ionescu", 10);
-		//myVideoStore.listInventory();
+		myVideoStore.listInventory();
 
 	}
 
