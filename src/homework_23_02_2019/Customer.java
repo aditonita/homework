@@ -2,12 +2,12 @@ package homework_23_02_2019;
 
 public class Customer {
 
-	private long cardNumber;
+	private String cardNumber;
 	private String firstName;
 	private String lastName;
 	private String acont;
 	private double amount;
-	private int pin;
+	private String pin;
 
 	/**
 	 * 
@@ -20,7 +20,7 @@ public class Customer {
 	 * @param amount
 	 * @param pin
 	 */
-	public Customer(long cardNumber, String firstName, String lastName, String acount, double amount, int pin) {
+	public Customer(String cardNumber, String firstName, String lastName, String acount, double amount, String pin) {
 		this.cardNumber = cardNumber;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -37,15 +37,15 @@ public class Customer {
 		this.amount = amount;
 	}
 
-	public int getPin() {
+	public String getPin() {
 		return pin;
 	}
 
-	public void setPin(int pin) {
+	public void setPin(String pin) {
 		this.pin = pin;
 	}
 
-	public long getCardNumber() {
+	public String getCardNumber() {
 		return cardNumber;
 	}
 
@@ -59,6 +59,30 @@ public class Customer {
 
 	public String getAcont() {
 		return acont;
+	}
+
+	@Override
+	public String toString() {
+		String row = "";
+		row += "| " + cardNumber + " | " + firstName;
+		for (int i = 0; i < 25 - firstName.length(); i++) {
+			row += " ";
+		}
+		row += " | " + lastName;
+		for (int i = 0; i < 25 - lastName.length(); i++) {
+			row += " ";
+		}
+		row += " | " + acont;
+		for (int i = 0; i < 25 -acont.length(); i++) {
+			row += " ";
+		}
+		row += " | ";
+		for (int i = 0; i < 25 - ((Double) this.amount).toString().length(); i++) {
+			row += " ";
+		}
+		row += " " + ((Double) this.amount).toString() + " | " + pin + " |\n";
+
+		return row;
 	}
 
 }
