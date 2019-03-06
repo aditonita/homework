@@ -68,7 +68,7 @@ public class Matrice {
 		return max;
 	}
 	
-	public void MockMatrice(int[][] matriceMock) {
+	public void MockMatrice(int[][] matriceMock) { //numele metodelor trebuie sa inceapa cu litera mare
 		matrice = matriceMock;
 	}
 }
