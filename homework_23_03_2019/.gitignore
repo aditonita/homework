@@ -1,0 +1,17 @@
+
+# IntelliJ
+*iml
+*ipr
+*iws
+*eml
+.idea/
+
+# Eclipse
+.classpath
+.project
+.externalToolBuilders
+.settings
+
+# Maven
+target
+/bin/
