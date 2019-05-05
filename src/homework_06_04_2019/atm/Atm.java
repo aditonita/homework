@@ -43,7 +43,9 @@ public class Atm {
 
 	private static void cangePinNumber(Card card) {
 		System.out.println("Enter new PIN number: ");
-		sc.nextLine();
+		String pinNumber = sc.next();
+		System.out.println(pinNumber);
+		card.setPinNumber(pinNumber);
 		card.update();
 	}
 

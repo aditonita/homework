@@ -53,14 +53,14 @@ public class Database {
 
 	public List<Account> getCustomerAccounts(Customer customer) {
 		List<Account> accounts = new ArrayList<>();
-		String query = "SELECT a.account_id, a.client_id, a.acount_number, a.amount, a.active FROM acounts a WHERE a.client_id = ?";
+		String query = "SELECT a.account_id, a.client_id, a.account_number, a.amount, a.active FROM acounts a WHERE a.client_id = ?";
 		try (Connection conn = getConnection()) {
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, customer.getClientId());
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				accounts.add(new Account(rs.getInt("acount_id"), rs.getString("client_id"),
-						rs.getString("acount_number"), rs.getDouble("amount"), rs.getBoolean("active")));
+				accounts.add(new Account(rs.getInt("account_id"), rs.getString("client_id"),
+						rs.getString("account_number"), rs.getDouble("amount"), rs.getBoolean("active")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -107,14 +107,14 @@ public class Database {
 	}
 
 	public Account getAccountByCardNumber(String cardNumber) {
-		String query = "SELECT a.account_id, a.client_id, a.acount_number, a.amount, a.active FROM acounts a WHERE a.account_id IN ("
+		String query = "SELECT a.account_id, a.client_id, a.account_number, a.amount, a.active FROM acounts a WHERE a.account_id IN ("
 				+ "  SELECT ci.acount_id FROM cards_info ci WHERE ci.card_number = ?)";
 		try (Connection conn = getConnection()) {
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, cardNumber);
 			ResultSet rs = ps.executeQuery();
 			if (rs.first()) {
-				return new Account(rs.getInt("account_id"), rs.getString("client_id"), rs.getString("acount_number"),
+				return new Account(rs.getInt("account_id"), rs.getString("client_id"), rs.getString("account_number"),
 						rs.getDouble("amount"), rs.getBoolean("active"));
 			}
 		} catch (SQLException e) {
@@ -162,7 +162,7 @@ public class Database {
 	}
 
 	public void newCustomerAccount(Customer customer, Account account) {
-		String query = "INSERT INTO acounts (account_id, client_id, acount_number, amount, active) VALUES (?, ?, ?, ?, ?)";
+		String query = "INSERT INTO acounts (account_id, client_id, account_number, amount, active) VALUES (?, ?, ?, ?, ?)";
 		try (Connection conn = getConnection()) {
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setInt(1, maxAccountId());
@@ -211,7 +211,7 @@ public class Database {
 
 	public void updateCustomerCard(Card card) {
 //		String query = "UPDATE cards_info c SET c.acount_id=?, c.card_number=? c.card_pin=? c.active=? WHERE c.card_id=?";
-		String query = "UPDATE cards_info c SET c.card_pin=? c.active=? WHERE c.card_id=?";
+		String query = "UPDATE cards_info SET card_pin=?, active=? WHERE card_id=?";
 		try (Connection conn = getConnection()) {
 			PreparedStatement ps = conn.prepareStatement(query);
 //			ps.setInt(1, card.getAccountId());
@@ -264,7 +264,7 @@ public class Database {
 	}
 
 	private Card newCard(Card card) {
-		String query = "INSERT INTO cards_info (acount_id, card_number, card_pin, active) VALUES (? ,? ,? ,? )";
+		String query = "INSERT INTO cards_info (account_id, card_number, card_pin, active) VALUES (? ,? ,? ,? )";
 		try (Connection conn = getConnection()) {
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setInt(1, card.getAccountId());
@@ -295,7 +295,7 @@ public class Database {
 	}
 
 	private void deleteAccount(Account account) {
-		String query = "DELETE FROM acounts WHERE acount_id = ?";
+		String query = "DELETE FROM acounts WHERE account_id = ?";
 		try (Connection conn = getConnection()) {
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setInt(1, account.getAccountId());
@@ -332,13 +332,13 @@ public class Database {
 	}
 
 	public Card getCardById(int cardId) {
-		String query = "SELECT card_id, acount_id, card_number, card_pin, active FROM cards_info WHERE card_id = ?";
+		String query = "SELECT card_id, account_id, card_number, card_pin, active FROM cards_info WHERE card_id = ?";
 		try (Connection conn = getConnection()) {
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setInt(1, cardId);
 			ResultSet rs = ps.executeQuery();
 			if (rs.first()) {
-				return new Card(rs.getInt("card_id"), rs.getInt("acount_id"), rs.getString("card_number"),
+				return new Card(rs.getInt("card_id"), rs.getInt("account_id"), rs.getString("card_number"),
 						rs.getString("card_pin"), rs.getBoolean("active"));
 			}
 		} catch (SQLException e) {
@@ -348,7 +348,18 @@ public class Database {
 	}
 
 	public Card getCardByCardNumber(String cardNumber) {
-		Database db = new Database();
-		return db.getCardByCardNumber(cardNumber);
+		String query = "SELECT card_id, account_id, card_number, card_pin, active FROM cards_info WHERE card_number = ?";
+		try (Connection conn = getConnection()) {
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, cardNumber);
+			ResultSet rs = ps.executeQuery();
+			if (rs.first()) {
+				return new Card(rs.getInt("card_id"), rs.getInt("account_id"), rs.getString("card_number"),
+						rs.getString("card_pin"), rs.getBoolean("active"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

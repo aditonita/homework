@@ -72,16 +72,19 @@ public class Bank {
 		clients.forEach(c -> System.out.println(
 				c.getClientId() + " - " + c.getFirstName() + " - " + c.getLastName() + " - " + c.getAddress()));
 		System.out.println("Enter client cnp: ");
-		String cnp = sc.nextLine();
+		String cnp = sc.next();
+		System.out.println(cnp);
 		Customer customer = Customers.getClientFromDatabase(cnp);
 		List<Account> accounts = Accounts.getAccountsFromDatabase(customer);
 		accounts.forEach(a -> System.out.format("%s - %s - %s - %s", a.getClientId(), a.getAccountId(),
 				a.getAccountNumber(), a.getAmount()));
 		System.out.println("Select account ID: ");
 		int accountId = sc.nextInt();
+		System.out.println(accountId);
 		Account account = Accounts.getAccountById(accountId);
 		System.out.println("Enter value: ");
 		double money = sc.nextDouble();
+		System.out.println(money);
 		double existing = account.getAmount();
 		account.setAmount(existing + money - money * 5 / 100);
 		account.update();
