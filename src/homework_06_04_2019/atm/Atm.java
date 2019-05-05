@@ -55,7 +55,7 @@ public class Atm {
 
 	private static void cardWithdraw(Account account) {
 		System.out.println("Enter money: ");
-		double money = sc.nextDouble();
+		double money =(double) sc.nextInt();
 		double exist = account.getAmount();
 		account.setAmount(exist - money);
 		account.update();
@@ -63,7 +63,7 @@ public class Atm {
 
 	private static void cardDeposit(Account account) {
 		System.out.println("Enter money: ");
-		double money = sc.nextDouble();
+		double money = (double) sc.nextInt();
 		double exist = account.getAmount();
 		account.setAmount(exist + money);
 		Accounts.updateAccount(account);

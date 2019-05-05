@@ -122,12 +122,13 @@ public class Bank {
 		List<Account> accounts = new ArrayList<>();
 		Database db = new Database();
 		System.out.println("Enter client cnp: ");
-		Customer client = db.getClientById(sc.nextLine());
+		Customer client = db.getClientById(sc.next());
 		accounts = db.getCustomerAccounts(client);
 		accounts.forEach(a -> System.out.println(a.getAccountId() + " - " + a.getAccountNumber()));
 		if (action == "addNew") {
 			System.out.println("Enter account number: ");
-			String accountNumber = sc.nextLine();
+			String accountNumber = sc.next();
+			System.out.println(accountNumber);
 			Account account = new Account(client.getClientId(), accountNumber, 0, true);
 			db.newCustomerAccount(client, account);
 		}

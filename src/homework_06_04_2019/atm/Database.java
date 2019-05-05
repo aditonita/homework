@@ -348,13 +348,13 @@ public class Database {
 	}
 
 	public Card getCardByCardNumber(String cardNumber) {
-		String query = "SELECT card_id, account_id, card_number, card_pin, active FROM cards_info WHERE card_number = ?";
+		String query = "SELECT card_id, acount_id, card_number, card_pin, active FROM cards_info WHERE card_number = ?";
 		try (Connection conn = getConnection()) {
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, cardNumber);
 			ResultSet rs = ps.executeQuery();
 			if (rs.first()) {
-				return new Card(rs.getInt("card_id"), rs.getInt("account_id"), rs.getString("card_number"),
+				return new Card(rs.getInt("card_id"), rs.getInt("acount_id"), rs.getString("card_number"),
 						rs.getString("card_pin"), rs.getBoolean("active"));
 			}
 		} catch (SQLException e) {
