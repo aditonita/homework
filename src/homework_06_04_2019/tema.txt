@@ -1,0 +1,41 @@
+﻿JDBC
+1. Upgrade la tema ATM cu persistenta in baza de date. 
+Va trebui sa creati unul sau mai multe tabele pentru a putea stoca datele despre conturi, useri, etc in functie de implementarea pe care ati ales-o pentru ATM.
+Conexiunea la baza de date (o puteti folosi pe cea creata impreuna la curs, si adaugati acolo tabele necesare) se face similar cu exemplul facut impreuna insa nu uitati ca inainte de a rula aplicatia cu JDBC sa va asigurati ca ati pornit serverul local de MySQL (e suficient un dublu click pe mysqld.exe din folderul bin al locatiei de instalare a serverului)
+
+2. Folosind baza de date movie, creati o aplicatie care sa poata fi folosita pentru a gestiona inchirierea de filme
+a. search function: userul introduce un nume de film de la tastatura si se afiseaza:
+    • toate filmele cu acel nume
+
+    • producerii acelor filme
+
+    • actorii lor
+
+    • o indicatie cu privire la disponibilitatea filmului (un film poate fi inchiriat de un singur client la un moment dat - unique constraint).
+
+b. Schimbarea planului unui client. Aici, un client poate introduce un plan_id si veti seta acel plan pentru client. pt a afla care sunt plan-id urile disponibile userul poate scrie plan si va primi un output cu toate planurile disponibile si detaliile lor.
+c. Inchirierea: Userul introduce un movie_id iar apoi se va inchiria acel film catre client.
+
+Hint: Pentru a pastra in memorie cid-ul customerului care ruleaza aplicatia puteti folosi o variabila statica in care sa-l stocati, ca sa va folositi de el la takurile in care este necesar. Ignorati coloanele login si password din customer.
+Importati fisierul atasat in baza de date movie cum am facut la curs:
+1. apelati mysqld.exe 
+2.intr-un cmd separat rulati mysql -u root -p si apoi introduceti password
+3. rulati comanda source path/to/movie_database_upgrade.sql
+
+
+
+
+
+ 
+movie_database_upgrade.sql movie_database_upgrade.sql
+Submission status
+
+
+
+cd D:\github\homework\src\homework_06_04_2019
+D:\mysql-8.0.15-winx64\bin\mysql -u root -p
+source atm_database_upgrade.sql
+
+
+source D:\github\homework\src\homework_06_04_2019\atm_database_upgrade.sql
+source D:\github\homework\src\homework_06_04_2019\movie_database_upgrade.sql
