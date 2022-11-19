@@ -19,3 +19,4 @@ To follow the exercises:
  2. Filtering and Collecting
  3. Mapping
  4. Method References
+5.only test push
